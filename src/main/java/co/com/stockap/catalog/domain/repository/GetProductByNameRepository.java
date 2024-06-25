@@ -2,8 +2,8 @@ package co.com.stockap.catalog.domain.repository;
 
 import co.com.stockap.catalog.domain.entity.Product;
 
-public interface SaveProductRepository {	
+public interface GetProductByNameRepository {
 	
-	void execute(Product product);
-
+	Product execute(String name);
+	
 }

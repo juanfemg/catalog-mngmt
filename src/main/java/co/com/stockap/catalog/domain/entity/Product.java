@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import co.com.stockap.catalog.domain.enums.StatusEnum;
 
 public class Product {
+	
 	private BigInteger id;
 	private String name;
 	private double price;
