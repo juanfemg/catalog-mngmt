@@ -1,6 +1,7 @@
 package co.com.stockap.catalog.domain.entity;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 import co.com.stockap.catalog.domain.enums.StatusEnum;
 
@@ -8,6 +9,7 @@ public class Product {
 	
 	private BigInteger id;
 	private String name;
+	private String category;
 	private double price;
 	private int quantity;
 	private String status;
@@ -68,9 +70,21 @@ public class Product {
 		this.status = status;
 	}
 
+	public String getCategory() {
+		if (Objects.isNull(category)) {
+			return "EMPTY";
+		}
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public static final class Builder {
 		private BigInteger id;
 		private String name;
+		private String category;
 		private double price;
 		private int quantity;
 		private String status;
@@ -89,6 +103,11 @@ public class Product {
 
 		public Builder name(String name) {
 			this.name = name;
+			return this;
+		}
+		
+		public Builder category(String category) {
+			this.category = category;
 			return this;
 		}
 
@@ -111,6 +130,7 @@ public class Product {
 			Product product = new Product();
 			product.setId(id);
 			product.setName(name);
+			product.setCategory(category);
 			product.setPrice(price);
 			product.setQuantity(quantity);
 			product.setStatus(status);

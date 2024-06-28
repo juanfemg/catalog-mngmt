@@ -42,6 +42,7 @@ public class AddProductDefault implements AddProduct {
 	private Product buildProduct(ProductRequest request) {
 		return Product.Builder.aProduct()
 				.name(request.name())
+				.category(request.category())
 				.price(request.price())
 				.quantity(request.quantity())
 				.status(Optional.ofNullable(request.status()).orElse(StatusEnum.ACTIVE.name()))
