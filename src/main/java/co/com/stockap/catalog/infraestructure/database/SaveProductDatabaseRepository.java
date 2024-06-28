@@ -24,17 +24,22 @@ public class SaveProductDatabaseRepository extends MQLRepository implements Save
 	@Override
 	public void execute(Product product) {
 		try {
-			Document document = new Document()
-					.append("_id", new ObjectId())
-					.append("name", product.getName())
-					.append("price", product.getPrice())
-					.append("quantity", product.getQuantity())
-					.append("status", product.getStatus());
+			Document document = this.buildDocument(product);
 			super.runInsert(Collection.PRODUCT.getProduct(), document);
 		} catch (Exception e) {
 			// TODO Logger
 			throw new RepositoryException(String.format("Failed to save document with name %s", product.getName()), e);
 		}
+	}
+	
+	private Document buildDocument(Product product) {
+		return new Document()
+				.append("_id", new ObjectId())
+				.append("name", product.getName())
+				.append("category", product.getCategory())
+				.append("price", product.getPrice())
+				.append("quantity", product.getQuantity())
+				.append("status", product.getStatus());
 	}
 
 }
