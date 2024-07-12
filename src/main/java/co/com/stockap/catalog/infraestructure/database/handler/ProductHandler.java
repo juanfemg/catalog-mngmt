@@ -27,6 +27,7 @@ public class ProductHandler {
 	
 	private static Product buildEntity(Document document) {
 		return Product.Builder.aProduct()
+				.id(document.get("_id").toString())
 				.name(document.getString("name"))
 				.category(document.getString("category"))
 				.price(document.getDouble("price"))

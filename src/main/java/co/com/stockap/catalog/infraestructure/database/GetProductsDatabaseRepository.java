@@ -20,7 +20,7 @@ import jakarta.validation.constraints.NotNull;
 @Repository
 public class GetProductsDatabaseRepository extends MQLRepository implements GetProductsRepository {
 
-	private static List<String> PROJECTION_FIELDS = Arrays.asList("name", "category", "price", "quantity", "status");
+	private static List<String> PROJECTION_FIELDS = Arrays.asList("_id", "name", "category", "price", "quantity", "status");
 	
 	protected GetProductsDatabaseRepository(@NotNull MongoClientFactoryBean mongoClientFactoryBean,
 			@NotNull MongoDatabaseFactory mongoDatabaseFactory) {

@@ -23,9 +23,8 @@ public class AddProductEntrypoint extends Entrypoint {
 	}
 
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<String> handle(@RequestBody ProductRequest product) {
-		this.addProduct.execute(product);
-
+	public ResponseEntity<String> handle(@RequestBody ProductRequest request) {
+		this.addProduct.execute(request);
 		return this.buildResponse(HttpStatus.CREATED, RESPONSE_MESSAGE);
 	}
 

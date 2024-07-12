@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import co.com.stockap.catalog.application.exception.MissingQueryParamException;
-import co.com.stockap.catalog.application.exception.ProductAlreadyExistsException;
-import co.com.stockap.catalog.application.exception.RepositoryException;
+import co.com.stockap.catalog.application.exception.*;
 
 @RestControllerAdvice
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
@@ -27,6 +25,13 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		String message = "Failed to read request";
 		ErrorResponse body = createBodyResponse(HttpStatus.BAD_REQUEST, ex, message);
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+	}
+	
+	@ExceptionHandler(MappingStatusException.class)
+	protected ResponseEntity<Object> handleMappingStatus(MappingStatusException ex) {
+		log.error("Error: {}", ex.getMessage());
+		ErrorResponse body = createBodyResponse(HttpStatus.BAD_REQUEST, ex, null);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
 	}
 	
