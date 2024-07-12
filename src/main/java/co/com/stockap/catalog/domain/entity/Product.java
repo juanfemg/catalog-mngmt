@@ -1,13 +1,12 @@
 package co.com.stockap.catalog.domain.entity;
 
-import java.math.BigInteger;
 import java.util.Objects;
 
 import co.com.stockap.catalog.domain.enums.StatusEnum;
 
 public class Product {
 	
-	private BigInteger id;
+	private String id;
 	private String name;
 	private String category;
 	private double price;
@@ -25,16 +24,20 @@ public class Product {
 	public boolean isActive() {
 		return this.status == StatusEnum.ACTIVE.name();
 	}
+	
+	public void activate() {
+		this.status = StatusEnum.ACTIVE.name();
+	}
 
 	public void inactivate() {
 		this.status = StatusEnum.INACTIVE.name();
 	}
 
-	public BigInteger getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -72,7 +75,7 @@ public class Product {
 
 	public String getCategory() {
 		if (Objects.isNull(category)) {
-			return "EMPTY";
+			return "_EMPTY_";
 		}
 		return category;
 	}
@@ -82,7 +85,7 @@ public class Product {
 	}
 
 	public static final class Builder {
-		private BigInteger id;
+		private String id;
 		private String name;
 		private String category;
 		private double price;
@@ -96,7 +99,7 @@ public class Product {
 			return new Builder();
 		}
 
-		public Builder id(BigInteger id) {
+		public Builder id(String id) {
 			this.id = id;
 			return this;
 		}

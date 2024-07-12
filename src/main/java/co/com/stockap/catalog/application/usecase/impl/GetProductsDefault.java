@@ -29,7 +29,8 @@ public class GetProductsDefault implements GetProducts {
 	}
 	
 	private ProductResponse buildProductResponse(Product product) {
-		return new ProductResponse(product.getName(),
+		return new ProductResponse(product.getId(), 
+				product.getName(),
 				product.getCategory(),
 				product.getPrice(),
 				product.getQuantity(),
